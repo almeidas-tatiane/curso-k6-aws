@@ -1,7 +1,7 @@
 name: K6 load test
 on: [push]
 permissions:
-    contents: write
+  contents: write
 jobs:
   build: 
     name: K6 load test
@@ -16,19 +16,16 @@ jobs:
           filename: scripts/test.js
 
       - run: ls & mkdir report & mv index.html report
-
+      
       - name: step 3 - upload artifact
         uses: actions/upload-artifact@v3
-        with:
-            name: relatorio de testes de performance
-            path: report
-
+        with: 
+          name: relatorio de testes de performance
+          path: report
+      
       - name: step 4 - publish report
         uses: peaceiris/actions-gh-pages@v3
-        with: 
-            github_token: ${{ secrets.GITHUB_TOKEN }}
-            publish_branch: gh-pages
-            publish_dir: report
-
-
-   
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: gh-pages
+          publish_dir: report
